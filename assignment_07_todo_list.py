@@ -116,7 +116,7 @@ def todo_app():
     tasks = []
     
     while True:
-        print("\n==============================")
+        print("\n=====================================")
         print("      TO-DO LIST MENU         ")
         print("==============================")
         print("1. Add task")
