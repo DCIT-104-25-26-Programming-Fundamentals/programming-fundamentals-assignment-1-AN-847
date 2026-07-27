@@ -2,7 +2,7 @@
 # PROGRAMMING FUNDAMENTALS — Assignment 7
 # =============================================================================
 #
-# TASK: Console-Based To-Do List Application
+# TASK: Console-Based To-Do List Application 
 #
 # Build a simple to-do list program that runs entirely in the console and
 # allows the user to manage their tasks interactively using a menu.
