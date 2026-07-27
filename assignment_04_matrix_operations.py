@@ -60,3 +60,89 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def read_matrix():
+    rows = int(input("Enter number of rows: "))
+    cols = int(input("Enter number of columns: "))
+    matrix = []
+    for i in range(rows):
+        row_input = input(f"Enter row {i + 1}: ")
+        row = [float(x) for x in row_input.split()]
+        matrix.append(row)
+    return matrix
+
+def print_matrix(matrix):
+    for row in matrix:
+        print(" ".join(f"{val:g}" for val in row))
+
+def transpose_matrix(matrix):
+    rows = len(matrix)
+    cols = len(matrix[0])
+    transposed = []
+    for c in range(cols):
+        new_row = []
+        for r in range(rows):
+            new_row.append(matrix[r][c])
+        transposed.append(new_row)
+    return transposed
+
+def add_matrices(mat_a, mat_b):
+    rows = len(mat_a)
+    cols = len(mat_a[0])
+    result = []
+    for r in range(rows):
+        row = []
+        for c in range(cols):
+            row.append(mat_a[r][c] + mat_b[r][c])
+        result.append(row)
+    return result
+
+def multiply_matrices(mat_a, mat_b):
+    rows_a = len(mat_a)
+    cols_a = len(mat_a[0])
+    rows_b = len(mat_b)
+    cols_b = len(mat_b[0])
+    
+    if cols_a != rows_b:
+        print("Error: Columns of Matrix A must match Rows of Matrix B for multiplication.")
+        return None
+        
+    result = [[0.0 for _ in range(cols_b)] for _ in range(rows_a)]
+    for i in range(rows_a):
+        for j in range(cols_b):
+            for k in range(cols_a):
+                result[i][j] += mat_a[i][k] * mat_b[k][j]
+    return result
+
+def main():
+    print("--- PART A: Transpose a Matrix ---")
+    matrix_a = read_matrix()
+    print("\nOriginal Matrix:")
+    print_matrix(matrix_a)
+    print("Transposed Matrix:")
+    print_matrix(transpose_matrix(matrix_a))
+    
+    print("\n--- PART B: Add Two Matrices ---")
+    print("Enter Matrix A for addition:")
+    mat_add1 = read_matrix()
+    print("Enter Matrix B for addition (must be same size):")
+    mat_add2 = read_matrix()
+    
+    if len(mat_add1) == len(mat_add2) and len(mat_add1[0]) == len(mat_add2[0]):
+        print("Sum of Matrices:")
+        print_matrix(add_matrices(mat_add1, mat_add2))
+    else:
+        print("Error: Matrices must have the exact same dimensions for addition.")
+
+    print("\n--- PART C: Multiply Two Matrices ---")
+    print("Enter Matrix A for multiplication:")
+    mat_mul1 = read_matrix()
+    print("Enter Matrix B for multiplication:")
+    mat_mul2 = read_matrix()
+    
+    product = multiply_matrices(mat_mul1, mat_mul2)
+    if product is not None:
+        print("Product of Matrices (A x B):")
+        print_matrix(product)
+
+if __name__ == "__main__":
+    main()
